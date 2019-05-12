@@ -2,7 +2,7 @@
 
 from os import listdir
 from os.path import isfile, join, isdir
-import sys, os, time, re, configparser, numbers
+import sys, os, time, re, configparser, numbers, signal
 
 import unicornhathd
 from PIL import Image
@@ -10,6 +10,8 @@ from PIL import Image
 def main(args):
     unicornhathd.rotation(0)
     unicornhathd.brightness(0.6)
+
+    signal.signal(signal.SIGTERM, sig_handler)
 
     if len(args) == 1:
         onlyfiles = [f for f in listdir('.') if is_dir(f)]
@@ -19,13 +21,23 @@ def main(args):
                     if file != '00system':
                         process_dir(file)
         except KeyboardInterrupt:
-            unicornhathd.off()
+            shutdown()
     else:
         try:
             while True:
                 process_dir(args[1])
         except KeyboardInterrupt:
-            unicornhathd.off()
+            shutdown()
+            sys.exit(15)
+
+def sig_handler(signal, frame):
+    print "Caught signal"
+    shutdown()
+
+def shutdown():
+    unicornhathd.off()
+    sys.exit(15)
+
 
 def process_dir(dirname):
 
