@@ -44,7 +44,11 @@ def process_dir(dirname):
     onlyfiles = [f for f in listdir(dirname) if is_image(join(dirname,f))]
 
     config = configparser.ConfigParser()
-    bob = config.read(join(dirname,"config.ini"))
+    try:
+        bob = config.read(join(dirname,"config.ini"))
+    except:
+        print "No config.ini"
+
 
     hold_ms = int(config["animation"]["hold"])
 
