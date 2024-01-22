@@ -1,2 +1,2 @@
 unicornhathd==0.0.4
-Pillow==10.0.1
+Pillow==10.2.0
