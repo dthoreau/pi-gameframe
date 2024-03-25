@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/python3
 
 from os import listdir
 from os.path import isfile, join, isdir
@@ -31,7 +31,7 @@ def main(args):
             sys.exit(15)
 
 def sig_handler(signal, frame):
-    print "Caught signal"
+    print("Caught signal")
     shutdown()
 
 def shutdown():
@@ -47,7 +47,7 @@ def process_dir(dirname):
     try:
         bob = config.read(join(dirname,"config.ini"))
     except:
-        print "No config.ini"
+        print("No config.ini")
 
 
     hold_ms = int(config["animation"]["hold"])
