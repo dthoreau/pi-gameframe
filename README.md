@@ -9,3 +9,8 @@ https://shop.pimoroni.com/products/ubercorn
 
 Project details (not mine), including 3d files for necessary
 https://johnmccabe.net/technology/projects/ubercorn-gameframe-pt1/
+
+
+------------
+Will run the scripts from a single directory, path on command line. To run the 
+current directory, use .
